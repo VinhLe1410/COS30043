@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang=”en”>
+
+<head>
+  <title>Template that uses Bootstrap</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <p>This is going to be my attempt to create a calculator</p>
+      </div>
+    </div>
+    <div class="row">
+      <!-- Your calculator code here -->
+      <!-- At first we will try to create a simple calculator that's not functional yet -->
+      <div class="row">
+        <!-- Display numbers-->
+        <div class="row">
+          <input class="col-8" type="text" id="display" />
+          <button class="col-4">CLEAR</button>
+        </div>
+        <!-- First Row -->
+        <div class="row">
+          <button class="col-3">MC</button>
+          <button class="col-3">M+</button>
+          <button class="col-3">M-</button>
+          <button class="col-3">MR</button>
+        </div>
+        <!-- Second Row -->
+        <div class="row">
+          <button class="col-3">AC</button>
+          <button class="col-3">SQRT</button>
+          <button class="col-3">%</button>
+          <button class="col-3">/</button>
+        </div>
+        <!-- Third Row -->
+        <div class="row">
+          <button class="col-3">7</button>
+          <button class="col-3">8</button>
+          <button class="col-3">9</button>
+          <button class="col-3">X</button>
+        </div>
+        <!-- Fourth Row -->
+        <div class="row">
+          <button class="col-3">4</button>
+          <button class="col-3">5</button>
+          <button class="col-3">6</button>
+          <button class="col-3">-</button>
+        </div>
+        <!-- Fifth Row -->
+        <div class="row">
+          <button class="col-3">1</button>
+          <button class="col-3">2</button>
+          <button class="col-3">3</button>
+          <button class="col-3">+</button>
+        </div>
+        <!-- Sixth Row -->
+        <div class="row">
+          <button class="col-3">0</button>
+          <button class="col-3">.</button>
+          <button class="col-3">+/-</button>
+          <button class="col-3">=</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Bootstrap javascript plug-ins -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
