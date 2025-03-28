@@ -16,6 +16,8 @@ const filteredEvents = computed(() => {
     return matchesId && matchesName && matchesCategory
   })
 })
+
+const hasFilteredEvents = computed(() => filteredEvents.value.length > 0)
 </script>
 
 <template>
@@ -44,12 +46,15 @@ const filteredEvents = computed(() => {
         </div>
         <!-- Event Category Filter -->
         <!-- Four radio buttons, for each category -->
-        <CategoryRadios v-model="selectedCategory" name="event-category-filter" />
+        <CategoryRadios v-model="selectedCategory" name="event-category-filter" preChecked="All" />
         
       </div>
       <!-- Events Table -->
       <div class="table-responsive px-5">
-        <table class="table table-striped">
+        <div v-if="!hasFilteredEvents" class="alert alert-info">
+          No events match your current choice of category.
+        </div>
+        <table v-else class="table table-striped">
           <thead>
             <tr>
               <th scope="col" id="event-id">Event ID</th>

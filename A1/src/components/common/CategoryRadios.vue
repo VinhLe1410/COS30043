@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { onMounted } from 'vue'
 
 const categories = [
   { id: 'FilterRadio1', value: 'All', label: 'All' },
@@ -10,9 +10,17 @@ const categories = [
 ]
 
 const selectedCategory = defineModel()
-defineProps<{
+const props = defineProps<{
   name: string
+  preChecked: string
 }>()
+
+// Set the initial value if it's not already set
+onMounted(() => {
+  if (selectedCategory.value === undefined || selectedCategory.value === '') {
+    selectedCategory.value = props.preChecked
+  }
+})
 </script>
 
 <template>
@@ -25,7 +33,6 @@ defineProps<{
         :id="name + '-' + category.id"
         :value="category.value"
         v-model="selectedCategory"
-        :checked="category.value === 'All'"
       >
       <label class="form-check-label" :for="name + '-' + category.id">
         {{ category.label }}
