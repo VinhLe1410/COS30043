@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { watch, ref } from 'vue'
-import ProductCard from '@/components/icons/ProductCard.vue'
+import { watch, ref, computed } from 'vue'
+import ProductCard from '@/components/ProductCard.vue'
+import CategoryRadios from '@/components/CategoryRadios.vue'
 import producthighlights from '@/assets/producthighlights.json'
 import events from '@/assets/events.json'
 
@@ -21,14 +22,16 @@ const typedEvents: Event[] = events
 
 const eventIdFilter = ref('')
 const eventNameFilter = ref('')
-
-// watch(eventIdFilter, (newValue) => {
-//   console.log('Event ID Filter changed:', newValue)
-// })
-
-// watch(eventNameFilter, (newValue) => {
-//   console.log('Event Name Filter changed:', newValue)
-// })
+const selectedCategory = ref('All')
+// Add computed property for filtered events
+const filteredEvents = computed(() => {
+  return typedEvents.filter(event => {
+    const matchesId = event.eventid.toLowerCase().includes(eventIdFilter.value.toLowerCase())
+    const matchesName = event.eventname.toLowerCase().includes(eventNameFilter.value.toLowerCase())
+    const matchesCategory = selectedCategory.value === 'All' || event.category === selectedCategory.value
+    return matchesId && matchesName && matchesCategory
+  })
+})
 </script>
 
 <template>
@@ -50,9 +53,9 @@ const eventNameFilter = ref('')
         <div class="form-floating col-lg-4 col-md-6 col-sm-12">
           <input 
             id="event-id-filter" 
+            v-model="eventIdFilter"
             class="form-control" 
             type="text" 
-            v-model="eventIdFilter"
             placeholder="Enter Event ID" />
           <label for="event-id-filter">Event ID</label>
         </div>
@@ -60,13 +63,18 @@ const eventNameFilter = ref('')
         <div class="form-floating col-lg-4 col-md-6 col-sm-12">
           <input 
             id="event-name-filter" 
+            v-model="eventNameFilter"
             class="form-control" 
             type="text"
-            v-model="eventNameFilter"
             placeholder="Enter Event Name" />
           <label for="event-name-filter">Event Name</label>
         </div>
+        <!-- Event Category Filter -->
+        <!-- Four radio buttons, for each category -->
+        <CategoryRadios v-model="selectedCategory" />
+        
       </div>
+      <!-- Events Table -->
       <div id="events-table" class="table-responsive px-5">
         <table class="table table-striped">
           <thead>
@@ -76,14 +84,27 @@ const eventNameFilter = ref('')
             <th scope="col">Duration (Hours)</th>
           </thead>
           <tbody>
-            <tr v-for="event in typedEvents" :key="event.eventid">
-              <td>{{ event.eventid }}</td>
+            <tr v-for="event in filteredEvents" :key="event.eventid">
+              <td scope="row">{{ event.eventid }}</td>
               <td>{{ event.eventname }}</td>
               <td>{{ event.category }}</td>
               <td>{{ event.durationhour }}</td>
             </tr>
           </tbody>
         </table> 
+      </div>
+    </div>
+
+    <!-- Registration Form Section -->
+    <div id="registration-form" class="container-fluid px-3 py-3">
+      <div class="row g-1 px-5 pb-3">
+        <label for="registration-form-username">Username:</label>
+        <input type="text" id="registration-form-username" class="form-control" />
+        <label for="registration-form-password">Password:</label>
+        <input type="password" id="registration-form-password" class="form-control" />
+        <label for="registration-form-confirm-password">Confirm Your Password:</label>
+        <input type="password" id="registration-form-confirm-password" class="form-control" />
+        <button type="submit" class="btn btn-primary">Register</button>
       </div>
     </div>
   </main>
