@@ -4,9 +4,9 @@ import { RouterLink, RouterView } from 'vue-router'
 </script>
 
 <template>
-  <div class="container-fluid mt-2">
+  <div class="container-xl mt-1">
     <div class="row">
-      <h2>Job Explorer</h2>
+      <h2><strong>Job Explorer</strong></h2>
     </div>
     <div class="row">
       <div class="col-3">

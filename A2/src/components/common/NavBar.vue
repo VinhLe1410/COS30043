@@ -4,7 +4,7 @@
 
 <template>
   <nav class="navbar navbar-dark bg-dark">
-    <div class="container-fluid justify-content-between align-items-">
+    <div class="container-fluid justify-content-between align-items-center pb-2">
       <a class="navbar-brand" href="#">Event Management</a>
       <div class="d-flex text-light">
         <a class="nav-link p-1" href="#/job-explorer">Job Explorer</a>
@@ -31,4 +31,4 @@
   height: 100%;
   object-fit: cover;
 }
-</style> 
+</style>

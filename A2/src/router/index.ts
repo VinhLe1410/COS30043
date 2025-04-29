@@ -1,20 +1,14 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHashHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-import JobOverview from '../views/JobExplorer/JobOverview.vue'
-import JobList from '../views/JobExplorer/JobList.vue'
+import JobList from '../components/features/JobList.vue'
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
+  history: createWebHashHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: '/',
       name: 'home',
       component: HomeView,
-    },
-    {
-      path: '/job-overview',
-      name: 'job-overview',
-      component: JobOverview,
     },
     {
       path: '/job/:job_id',

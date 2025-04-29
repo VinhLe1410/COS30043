@@ -7,6 +7,7 @@ import vueDevTools from 'vite-plugin-vue-devtools'
 
 // https://vite.dev/config/
 export default defineConfig({
+  base: '/cos30043/s104193108/A2/',
   plugins: [
     vue(),
     vueJsx(),
